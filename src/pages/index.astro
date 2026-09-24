@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+const featuredPosts = sortedPosts.slice(0, 6);
+const remainingPosts = sortedPosts.slice(6, 40);
+---
+
+<Layout title="Villa Location Guadeloupe — Villas de Rêve & Locations Saisonnières avec Piscine en Guadeloupe">
+  <!-- Hero Section Flaco -->
+  <section class="relative border-b border-teal-900/60 bg-[#061c1b] py-16 sm:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-900/25 via-transparent to-transparent"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6">
+      
+      <!-- Top Pill -->
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 text-xs text-teal-300 font-semibold">
+        <span class="h-2 w-2 rounded-full bg-teal-400"></span>
+        LOCATIONS SAISONNIÈRES DE PRESTIGE
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl leading-tight">
+        Les Plus Belles <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-300 to-cyan-300">Villas de Vacances</span> en Guadeloupe.
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed font-light">
+        Villas contemporaines avec piscine à débordement à Saint-François, demeures créoles de charme à Sainte-Anne et havres de paix face au coucher de soleil à Deshaies.
+      </p>
+
+      <!-- Key Pillars Row -->
+      <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-6">
+        <div class="rounded-xl border border-teal-900/60 bg-[#0a2928]/60 p-5 backdrop-blur-sm">
+          <div class="text-[11px] text-teal-400 uppercase tracking-widest font-semibold">Saint-François</div>
+          <div class="mt-2 text-2xl font-bold text-white">Lagon & Golf</div>
+          <div class="mt-1 text-xs text-slate-400">Villas de luxe avec piscine</div>
+        </div>
+        <div class="rounded-xl border border-teal-900/60 bg-[#0a2928]/60 p-5 backdrop-blur-sm">
+          <div class="text-[11px] text-teal-400 uppercase tracking-widest font-semibold">Sainte-Anne</div>
+          <div class="mt-2 text-2xl font-bold text-teal-300">Pieds dans l'Eau</div>
+          <div class="mt-1 text-xs text-slate-400">Plages de carte postale</div>
+        </div>
+        <div class="rounded-xl border border-teal-900/60 bg-[#0a2928]/60 p-5 backdrop-blur-sm">
+          <div class="text-[11px] text-teal-400 uppercase tracking-widest font-semibold">Deshaies & Côte</div>
+          <div class="mt-2 text-2xl font-bold text-white">Nature & Mer</div>
+          <div class="mt-1 text-xs text-slate-400">Mornes tropicaux & criques</div>
+        </div>
+        <div class="rounded-xl border border-teal-900/60 bg-[#0a2928]/60 p-5 backdrop-blur-sm">
+          <div class="text-[11px] text-teal-400 uppercase tracking-widest font-semibold">Conciergerie</div>
+          <div class="mt-2 text-2xl font-bold text-emerald-400">7j/7</div>
+          <div class="mt-1 text-xs text-slate-400">Accueil & services sur mesure</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Bento Articles -->
+  <section class="py-16 sm:py-20 bg-[#061c1b] border-b border-teal-900/80">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-teal-400 font-semibold">Guides & Conseils Vacances</span>
+          <h2 class="text-2xl font-bold text-white sm:text-3xl mt-1">Dernières Sélections de Villas & Quartiers</h2>
+        </div>
+        <a href="/blog/" class="hidden sm:inline-flex items-center gap-2 text-xs text-teal-400 hover:text-teal-300 font-semibold">
+          TOUS LES GUIDES →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featuredPosts.map((post) => (
+          <article class="group relative flex flex-col justify-between rounded-xl border border-teal-900/60 bg-[#082423]/50 p-6 transition-all duration-300 hover:border-teal-500/40 hover:bg-[#082423]/90">
+            <div>
+              <div class="flex items-center justify-between text-[11px] text-slate-400 mb-3">
+                <span class="rounded bg-teal-950 px-2 py-0.5 text-teal-300 font-semibold">{post.data.category || 'Villa'}</span>
+                <span>{new Date(post.data.pubDate).toLocaleDateString('fr-FR', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+              </div>
+              <h3 class="text-lg font-bold text-white group-hover:text-teal-300 transition-colors line-clamp-2 leading-snug">
+                <a href={'/blog/' + post.id + '/'}>
+                  {post.data.title}
+                </a>
+              </h3>
+              <p class="mt-3 text-xs text-slate-400 line-clamp-3 leading-relaxed">
+                {post.data.description}
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-teal-900/60 flex items-center justify-between text-xs">
+              <span class="text-slate-500">Villa Location Dossier</span>
+              <a href={'/blog/' + post.id + '/'} class="text-teal-400 hover:underline flex items-center gap-1 font-semibold">
+                Découvrir la fiche →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Extended Library -->
+  <section class="py-16 bg-[#041615]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-white mb-8">
+        Conseils Séjour, Plages & Conciergerie en Guadeloupe
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {remainingPosts.map(post => (
+          <div class="flex items-start justify-between rounded-lg border border-teal-900/60 bg-[#061d1c]/40 p-4 hover:border-teal-800 transition-colors">
+            <div class="pr-4">
+              <span class="text-[10px] text-teal-400 uppercase tracking-wider font-semibold">{post.data.category || 'Article'}</span>
+              <h4 class="text-sm font-semibold text-slate-200 mt-1 hover:text-teal-300 transition-colors">
+                <a href={'/blog/' + post.id + '/'}>{post.data.title}</a>
+              </h4>
+            </div>
+            <a href={'/blog/' + post.id + '/'} class="text-xs text-teal-400 whitespace-nowrap pt-1 font-semibold">
+              Consulter →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

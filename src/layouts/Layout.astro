@@ -1,0 +1,135 @@
+---
+import { siteConfig } from '../config/site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  lang?: string;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = '/images/og-image.jpg',
+  lang = 'fr',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url);
+const alternateFr = new URL(Astro.url.pathname.replace(/^\/(en|es)/, ''), siteConfig.url);
+const alternateEn = new URL('/en' + Astro.url.pathname.replace(/^\/(en|es)/, ''), siteConfig.url);
+const alternateEs = new URL('/es' + Astro.url.pathname.replace(/^\/(en|es)/, ''), siteConfig.url);
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth bg-[#061c1b] text-slate-100 antialiased selection:bg-teal-500 selection:text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <link rel="alternate" hreflang="fr" href={alternateFr} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="es" href={alternateEs} />
+    <link rel="alternate" hreflang="x-default" href={alternateFr} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={image} />
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style is:global>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="flex min-h-screen flex-col bg-[#061c1b] text-slate-200">
+    <!-- Header Flaco -->
+    <header class="sticky top-0 z-50 border-b border-teal-900/60 bg-[#061c1b]/90 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6">
+        <a href="/" class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-tr from-teal-500 to-emerald-600 font-extrabold text-white shadow-md shadow-teal-950/40">
+            VLG
+          </div>
+          <div>
+            <span class="block text-base font-extrabold tracking-tight text-white uppercase">VILLA LOCATION</span>
+            <span class="block text-[10px] font-semibold tracking-wider text-teal-400 uppercase">Guadeloupe Vacations</span>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-300">
+          <a href="/blog/" class="hover:text-teal-400 transition-colors uppercase">SAINT-FRANÇOIS</a>
+          <a href="/blog/" class="hover:text-teal-400 transition-colors uppercase">SAINTE-ANNE</a>
+          <a href="/blog/" class="hover:text-teal-400 transition-colors uppercase">DESHAIES</a>
+          <a href="/mentions-legales/" class="hover:text-teal-400 transition-colors uppercase">CONCIERGERIE</a>
+        </nav>
+
+        <!-- Languages & Badges -->
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-950/40 px-3 py-1 text-[11px] text-teal-300 font-semibold">
+            <span class="h-1.5 w-1.5 rounded-full bg-teal-400"></span>
+            VILLAS D'EXCEPTION
+          </div>
+          <div class="flex items-center gap-1.5 text-xs text-slate-400 border-l border-teal-900 pl-3 font-semibold">
+            <a href="/" class="px-1.5 py-0.5 rounded text-white bg-teal-900/80">FR</a>
+            <a href="/en/" class="px-1.5 py-0.5 rounded hover:text-white">EN</a>
+            <a href="/es/" class="px-1.5 py-0.5 rounded hover:text-white">ES</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Footer Flaco -->
+    <footer class="border-t border-teal-900/80 bg-[#041413] py-12 text-slate-400 text-xs">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="h-7 w-7 rounded bg-teal-600 font-bold text-white flex items-center justify-center text-xs">VLG</div>
+              <span class="text-sm font-bold text-white">VILLA LOCATION GUADELOUPE</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed max-w-md font-light">
+              Portail expert de la location saisonnière de prestige en Guadeloupe : villas avec piscine, résidences de plage à Saint-François et Sainte-Anne, et conciergerie insulaire privée.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-3 tracking-wider text-[11px] uppercase">Navigation</h4>
+            <ul class="space-y-2 text-slate-400">
+              <li><a href="/" class="hover:text-teal-400 transition-colors">Accueil</a></li>
+              <li><a href="/blog/" class="hover:text-teal-400 transition-colors">Toutes les Fiches Villas</a></li>
+              <li><a href="/en/" class="hover:text-teal-400 transition-colors">English Edition</a></li>
+              <li><a href="/es/" class="hover:text-teal-400 transition-colors">Edición en Español</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-slate-200 font-semibold mb-3 tracking-wider text-[11px] uppercase">Légal & Normes</h4>
+            <ul class="space-y-2 text-slate-400">
+              <li><a href="/mentions-legales/" class="hover:text-teal-400 transition-colors">Mentions Légales</a></li>
+              <li><a href="/politique-confidentialite/" class="hover:text-teal-400 transition-colors">Politique de Confidentialité</a></li>
+              <li><span class="text-slate-500">100% Cookieless RGPD</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-teal-900/60 pt-6 flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-500">
+          <p>© {new Date().getFullYear()} Villa Location Guadeloupe — Tous droits réservés.</p>
+          <p class="mt-2 sm:mt-0 font-semibold text-teal-400">LEXINGTON FLACO ARCHITECTURE</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
