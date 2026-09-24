@@ -1,0 +1,36 @@
+# Villa Location Guadeloupe — Villas de Rêve & Locations Saisonnières avec Piscine en Guadeloupe
+
+> Sélection exclusive de villas d
+
+## Présentation générale
+Villa Location Guadeloupe — Villas de Rêve & Locations Saisonnières avec Piscine en Guadeloupe (https://villa-location-guadeloupe.com) est un média d'information et guide spécialisé indépendant dédié à sa thématique d'expertise. Notre mission est d'apporter une information fiable, vérifiée et actualisée aux passionnés, professionnels et résidents, en valorisant les meilleures pratiques, les acteurs locaux et l'art de vivre sous les alizés.
+
+## Structure du site & Thématiques phares
+Le contenu est structuré autour des axes éditoriaux majeurs suivants :
+
+- **Saint-François & Sainte-Anne** : Analyses, guides détaillés, conseils pratiques et retours d'expérience sur le terrain.
+- **Deshaies & Basse-Terre** : Analyses, guides détaillés, conseils pratiques et retours d'expérience sur le terrain.
+- **Villas d** : Analyses, guides détaillés, conseils pratiques et retours d'expérience sur le terrain.
+- **Conseils Séjour & Conciergerie** : Analyses, guides détaillés, conseils pratiques et retours d'expérience sur le terrain.
+
+## Ressources & Publications
+- [Tous les articles du Magazine](https://villa-location-guadeloupe.com/blog/) : Plus de 6 publications thématiques, guides d'experts et fiches pratiques rédigées par notre rédaction.
+- [Accueil international (English)](https://villa-location-guadeloupe.com/en/) : Version anglophone des dossiers et guides de référence.
+- [Accueil international (Español)](https://villa-location-guadeloupe.com/es/) : Version hispanophone des dossiers et guides de référence.
+
+## Éthique éditoriale & Charte de qualité
+Villa Location Guadeloupe — Villas de Rêve & Locations Saisonnières avec Piscine en Guadeloupe s'engage au quotidien sur une charte stricte :
+- Production d'analyses indépendantes, objectives et fondées sur des données terrain.
+- Sensibilisation active au respect de l'environnement local et à la préservation des écosystèmes.
+- Valorisation des artisans, commerces, initiatives durables et talents régionaux.
+
+## Données techniques & Respect de la vie privée
+- Plateforme statique haute performance (Astro 5 SSG, hébergement Edge Cloudflare Pages).
+- Mesure d'audience 100% cookieless via Matomo auto-hébergé, strictement conforme au RGPD et exemptée de consentement préalable selon les recommandations de la CNIL.
+- Régie publicitaire Revive Adserver intégrée de façon asynchrone garantissant une vitesse d'affichage optimale sans traçage intrusif.
+
+## Informations légales & Contact
+- Éditeur : Villa Location Guadeloupe Vacations
+- Contact rédaction : contact@villa-location-guadeloupe.com
+- Mentions Légales : https://villa-location-guadeloupe.com/mentions-legales/
+- Politique de Confidentialité : https://villa-location-guadeloupe.com/politique-confidentialite/
